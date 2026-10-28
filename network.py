@@ -38,3 +38,39 @@ def edge_to_neighbour_list_my(edge_list, /):
         neighbour_dict[u].add(v)
         neighbour_dict[v].add(u)
     return neighbour_dict
+
+
+def calculate_degree_statistics(neighbour_dict):
+    degrees = []
+
+    for node, neighbours in neighbour_dict.items():
+        degree = len(neighbours)
+
+        if node in neighbours:
+            degree += 1
+
+        degrees.append(degree)
+
+    maximum_degree = max(degrees)
+    minimum_degree = min(degrees)
+
+    
+    average = lambda deg_list: sum(deg_list) / len(deg_list) if deg_list else 0
+    average_degree = average(degrees)
+
+    
+    degree_counts = {deg: degrees.count(deg) for deg in set(degrees)}
+
+    
+    most_common = lambda deg: degree_counts[deg]
+
+    
+    most_common_degree = max(degree_counts.keys(), key=most_common)
+
+    return (
+        maximum_degree,
+        minimum_degree,
+        average_degree,
+        most_common_degree,
+    )
+

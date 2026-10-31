@@ -74,3 +74,28 @@ def calculate_degree_statistics(neighbour_dict):
         most_common_degree,
     )
 
+def calculate_clustering_coefficient(*,network, node): 
+    neighbours = set(network.get(node, []))
+
+    neighbours.discard(node)
+
+    neighbour_list = list(neighbours)
+
+    if len(neighbour_list) < 2:
+        return 0.0
+
+    checked_pairs = 0
+    connected_pairs = 0
+
+    for i in range(len(neighbour_list)):
+        neighbour_a = neighbour_list[i]
+
+        for j in range(i + 1, len(neighbour_list)):
+            neighbour_b = neighbour_list[j]
+
+            checked_pairs += 1
+
+            if neighbour_b in network.get(neighbour_a, []):
+                connected_pairs += 1
+
+    return connected_pairs / checked_pairs

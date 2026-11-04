@@ -1,0 +1,9 @@
+{
+  "path": "./data/cardataTournament.csv",
+  "name": "Fun Ride 2026",
+  "nteams": 16,
+  "default_low": 10000,
+  "default_high": 1000000,
+  "default_incr": 10000,
+  "prize": 95000
+}
